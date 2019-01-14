@@ -14,7 +14,7 @@ namespace spookylab.Project
     public void GetUserInput()
     {
       System.Console.WriteLine("What would you like to do now?");
-      string input = Console.ReadLine();
+      string input = Console.ReadLine().ToLower();
       string[] parsedInput = input.ToLower().Split(" ");
       string command = parsedInput[0];
       string value = "";
@@ -90,7 +90,7 @@ namespace spookylab.Project
       Console.Clear();
       System.Console.WriteLine($"You take a closer look at the {itemName}.");
       {
-        Item checkedItem = CurrentRoom.Items.Find(i => i.Name.ToLower() == itemName.ToLower());
+        Item checkedItem = CurrentRoom.Items.Find(i => i.Name.ToUpper() == itemName.ToUpper());
 
         if (checkedItem != null)
         {
@@ -101,7 +101,6 @@ namespace spookylab.Project
           System.Console.WriteLine("Please ask again, but better.");
         }
       }
-      Console.Clear();
 
     }
 
@@ -126,19 +125,19 @@ namespace spookylab.Project
     public void Setup()
     {
       #region CREATING ROOMS
-      Room o = new Room("Office", "You're in your office. In the corner is your desk, a mini-fridge, and a medicine cabinet.");
+      Room o = new Room("Office", "You're in your office. In the corner is your DESK, a MINI-FRIDGE, and a MEDICINE CABINET.");
 
-      Room h1 = new Room("Hallway 1", "You're in Hallway 1. To your left is Lab 1 and to your right is Lab 2. Up ahead is the door to Hallway 2. There's a paperclip on the foor.");
-      Room l1 = new Room("Lab 1", "You're in the lab where the Dr. Acula keeps the Sasquatch. There's a tree with a knot in the middle. Your blurry friend sits under the tree.");
-      Room l2 = new Room("Lab 2", "You're in the lab where Dr. Acula keeps the Golem. It's a room that's filled with one sentient rock and many non-sentient rocks. In the corner is a bougie CD player.");
+      Room h1 = new Room("Hallway 1", "You're in Hallway 1. To your left is Lab 1 and to your right is Lab 2. Up ahead is the door to Hallway 2.");
+      Room l1 = new Room("Lab 1", "You're in the lab where the Dr. Acula keeps the Sasquatch. There's a TREE with a knot in the middle. Your blurry friend sits under the TREE.");
+      Room l2 = new Room("Lab 2", "You're in the lab where Dr. Acula keeps the Golem. It's a room that's filled with one sentient rock and many non-sentient rocks. In the corner is a bougie CD PLAYER.");
 
-      Room h2 = new Room("Hallway 2", "You're in Hallway 2. To your left is Lab 3. To your right is Lab 4. There are a pair of sunglasses on the ground. Up ahead is Hallway 3.");
-      Room l3 = new Room("Lab 3", "You're in the lab with the Dragon. It's really hot in here. The dragon is peering at you hungrily from the edge of a synthetic volcano.");
+      Room h2 = new Room("Hallway 2", "You're in Hallway 2. To your left is Lab 3. To your right is Lab 4.  Up ahead is Hallway 3. There is a lot of clutter on the FLOOR. You should probably check it.");
+      Room l3 = new Room("Lab 3", "You're in the lab with the Dragon. It's really hot in here. The dragon is peering at you hungrily from the edge of a synthetic volcano. It looks like it doesn't like you.");
       Room l4 = new Room("Lab 4", "You're in the lab where Dr. Acula keeeps the Banshee. She's over by the synthetic lake. She's singing, and she sounds terrible.");
 
-      Room h3 = new Room("Hallway 3", "You're in Hallway 3. To your left is Lab 5. To your right is Lab 4. Behind you is Hallway 2. Up ahead is the exit. There's a Fire Extinguisher on the wall.");
+      Room h3 = new Room("Hallway 3", "You're in Hallway 3. To your left is Lab 5. To your right is Lab 4. Behind you is Hallway 2. Up ahead is the exit. There's a CABINET on the wall.");
       Room l5 = new Room("Lab 5", "You're in the lab where Dr. Acula keeps the creepy mutant child. The child looks at you and immediately starts screaming.");
-      Room l6 = new Room("Lab 6", "You're in the lab where Dr. Acula keeps the dreaded SpaGhoulie. A cold breeze from nowhere blows through the room, sending chills up your spine. The SpaGhoulie trudges slowly towards you, hand outstretched.");
+      Room l6 = new Room("Lab 6", "You're in the lab where Dr. Acula keeps the dreaded SpaGhoulie. A cold breeze from nowhere blows through the room, sending chills up your spine. The SpaGhoulie trudges towards you, hand outstretched.");
       Room e = new Room("Exit", "You approach the exit when you see it's blocked by the Sphynx.\n It asks you for the password. If you think you might know it, type 'guess'. If not, go back to the labratory to look for more clues.");
 
       CurrentRoom = o;
@@ -179,57 +178,64 @@ namespace spookylab.Project
 
       #region CREATE ITEMS
 
+
+
       //office
-      Item minifridge = new Item("Mini-Fridge", "It's like a fridge, but smaller. The only thing inside it is some old spaghetti.", false);
-      Item oldspaghetti = new Item("Old Spaghetti", "They're your ancient leftovers.", true);
+      Item minifridge = new Item("MINI-FRIDGE", "It's like a fridge, but smaller. The only thing inside it is some OLD SPAGHETTI.", false);
+      Item oldspaghetti = new Item("OLD SPAGHETTI", "They're your ancient leftovers.", true);
 
-      Item desk = new Item("Desk", "It's your cluttered desk. On it, you find a pair of scissors, a Biggie CD, a Brookes and Dunn CD, a Rush CD, a clothespin, a strawhat and a hawaiian shirt.", false);
-      Item scissors = new Item("Scissors", "A pair of scissors you  borrowed from Susan.", true);
-      Item biggiecd = new Item("Biggie CD", "It's an awesome album.", true);
-      Item bndcd = new Item("Brookes and Dunn CD", "It's a pretty good album.", true);
-      Item rushcd = new Item("Rush CD", "It's an uh-maze-ing album.", true);
-      Item clothespin = new Item("Clothespin", "It's a clothespin", true);
-      Item strawhat = new Item("Strawhat", "It's your favorite hat", true);
-      Item hawaiianshirt = new Item("Hawaiian Shirt", "It's a stylish shirt", true);
+      Item desk = new Item("DESK", "It's your cluttered desk. On it, you find a pair of SCISSORS, a BIGGIE CD, a BROOKES AND DUNN CD, a RUSH CD, a CLOTHESPIN, a STRAWHAT and a HAWAIIAN SHIRT.", false);
+      Item scissors = new Item("SCISSORS", "A pair of SCISSORS you  borrowed from Susan.", true);
+      Item biggiecd = new Item("BIGGIE CD", "It's an awesome album.", true);
+      Item bndcd = new Item("BROOKES AND DUNN CD", "It's a pretty good album.", true);
+      Item rushcd = new Item("RUSH CD", "It's an uh-maze-ing album.", true);
+      Item clothespin = new Item("CLOTHESPIN", "It's a CLOTHESPIN", true);
+      Item strawhat = new Item("STRAWHAT", "It's your favorite hat", true);
+      Item hawaiianshirt = new Item("HAWAIIAN SHIRT", "It's a stylish shirt", true);
 
-      Item firstaidkit = new Item("Medicine Cabinet", "Most of the items are expired, but they probably still work okay. There are bandaids, coughdrops, and some cottonballs", false);
-      Item bandaids = new Item("BandAids", "It's a pack of Band-Aids.", true);
-      Item coughdrops = new Item("CoughDrops", "They're lemon-flavored!", true);
-      Item cottonball = new Item("CottonBalls", "Super-soft and super versatile.", true);
+      Item firstaidkit = new Item("MEDICINE CABINET", "Most of the items are expired, but they probably still work okay. There are BANDAIDS, COUGHDROPS, and some COTTONBALLS", false);
+      Item bandaids = new Item("BANDAIDS", "It's a pack of BANDAIDS.", true);
+      Item coughdrops = new Item("COUGHDROPS", "They're lemon-flavored!", true);
+      Item cottonball = new Item("COTTONBALLS", "Super-soft!", true);
 
       //h1
-      Item paperclip = new Item("Paperclip", "It's a paperclip.", true);
+      Item paperclip = new Item("PAPERCLIP", "It's a PAPERCLIP.", true);
 
       //l1
-      Item tree = new Item("Tree", "A tree with a knot on it. Inside the knot there's a piece of Paper with the letter 'E' written on it.", false);
-      Item candy = new Item("Candy", "It's quite delicious.", true);
-      Item ePaper = new Item("Paper", "It's a piece of paper with the letter 'E' written on it.", true);
+      Item tree = new Item("TREE", "A TREE with a knot on it. Inside the knot there's a piece of PAPER with the letter 'E' written on it.", false);
+      Item candy = new Item("CANDY", "It looks kinda gross.", true);
+      Item ePaper = new Item("PAPER", "It's a piece of PAPER with the letter 'E' written on it.", true);
 
 
       //l2
-      Item cdplayer = new Item("CD Player", "It appears to play CDs", false);
-      Item ePaper2 = new Item("Paper", "It's a small piece of paper with the letter 'E' written on it.", true);
+      Item cdplayer = new Item("CD PLAYER", "It appears to play CDs", false);
+      Item ePaper2 = new Item("PAPER", "It's a small piece of PAPER with the letter 'E' written on it.", true);
 
       //h2
-      Item sunglasses = new Item("Sunglasses", "These shades will make you look really cool.", true);
+      Item floor = new Item("FLOOR", "A ton of things are scattered on the FLOOR, as if people had to leave them in a hurry. Amdist them is a pair of SUNGLASSES.", false);
+      Item sunglasses = new Item("SUNGLASSES", "These shades will make you look really cool.", true);
 
       //l3
-      Item sPaper = new Item("Paper", "It's a piece of paper with the letter 'S' written on it.", true);
+      Item sPaper = new Item("PAPER", "It's a piece of PAPER with the letter 'S' written on it.", true);
 
       //l4
-      Item lPaper = new Item("Paper", "It's a piece of paper with the letter 'L' written on it.", true);
+      Item lPaper = new Item("PAPER", "It's a piece of PAPER with the letter 'L' written on it.", true);
 
       //h3
-      Item fireextinguisher = new Item("Fire Extinguisher", "It lookes like it extinguishes fires.", true);
+      Item cabinet = new Item("CABINET", "There's a FIRE EXTINGUISHER inside.", false);
+      Item fireextinguisher = new Item("FIRE EXTINGUISHER", "It looks like it extinguishes fires.", true);
 
       //l5
-      Item aPaper = new Item("Paper", "It's a piece of paper with the letter 'A' written on it.", true);
+      Item aPaper = new Item("PAPER", "It's a piece of PAPER with the letter 'A' written on it.", true);
 
       //l6
-      Item pPaper = new Item("Paper", "It's a piece of paper with the letter 'P' written on it.", true);
+      Item pPaper = new Item("PAPER", "It's a piece of PAPER with the letter 'P' written on it.", true);
 
       //e
-      Item magicspoon = new Item("Magic Spoon", "It's a really cool spoon.", true);
+      Item magicspoon = new Item("MAGIC SPOON", "It's a really cool spoon.", true);
+
+
+
 
       #endregion
 
@@ -268,15 +274,17 @@ namespace spookylab.Project
       l2.Items.Add(ePaper2);
 
       //h2 
+      h2.Items.Add(floor);
       h2.Items.Add(sunglasses);
 
       //l3
       l3.Items.Add(sPaper);
 
       //l4
-      l1.Items.Add(lPaper);
+      l4.Items.Add(lPaper);
 
       //h3
+      h3.Items.Add(cabinet);
       h3.Items.Add(fireextinguisher);
 
       //l5
@@ -305,12 +313,12 @@ namespace spookylab.Project
       if (CurrentRoom.Name == "Exit")
       {
         System.Console.Write("Guess Password:");
-        string correctGuess = Console.ReadLine().ToLower();
+        string correctGuess = Console.ReadLine().ToUpper();
 
-        if (correctGuess == "please")
+        if (correctGuess == "PLEASE")
         {
           System.Console.WriteLine("... 'Please?' you say to the Sphynx hesitantly. \n It looks at you appraisingly. \n 'Also, you have lovely eyes.' you add on for good measure. \n The Sphynx nods its massive head in approval. It almost looks like its blushing a little, like it's totally flattered or something. \n 'Congratulations', it says, 'you've given the correct password. I'll allow you to go.\n But might I request that you release all of us and take us with you? None of us know how to drive. (y/n)?\n");
-          string response = Console.ReadLine().ToLower();
+          string response = Console.ReadLine();
           if (response == "n")
           {
             Console.Clear();
@@ -321,7 +329,8 @@ namespace spookylab.Project
           System.Console.WriteLine("Yes, I'll definitely do that.' You say. \n '(except for t3h SpaGhoulie)You add on under your breath. That creature should only exist in this console game!'\nThe Sphynx nods majestically. \n'Well then,' it continues, 'you have our thanks, stalwart warrior. You've saved the day. Sorry about that password stuff.\n I'm a Sphynx. Riddles and passwords are implicit.\n \n You shrug, and somewhere in the distance you hear an alarm buzzing. It's probably yours. You're always falling asleep on the job.\n");
           Reset();
         }
-
+        System.Console.WriteLine("'THAT'S INCORRECT AND I'M TOTALLY TRIGGERED!\n Game Over!'\n");
+        Reset();
       }
     }
 
@@ -361,16 +370,16 @@ namespace spookylab.Project
       }
 
       #region hawaiianshirt
-      else if (actualItem.Name == "Hawaiian Shirt")
+      else if (actualItem.Name == "HAWAIIAN SHIRT")
       {
-        System.Console.WriteLine("\nYou put on your favorite shirt. Lookin' sharp there, slick.");
+        System.Console.WriteLine("\nYou put on your favorite shirt. Lookin' sharp there, slick.\n");
         CurrentPlayer.Inventory.Remove(actualItem);
       }
       #endregion
 
       #region o.strawhat
 
-      else if (actualItem.Name == "Strawhat")
+      else if (actualItem.Name == "STRAWHAT")
       {
         System.Console.WriteLine("\nYou put on your finest hat. You look fantastic.");
         CurrentPlayer.Inventory.Remove(actualItem);
@@ -379,42 +388,42 @@ namespace spookylab.Project
       #endregion
 
       #region l1.scissors
-      else if (CurrentRoom.Name == "Lab 1" && actualItem.Name == "Scissors")
+      else if (CurrentRoom.Name == "Lab 1" && actualItem.Name == "SCISSORS")
       {
-        System.Console.WriteLine("\nYou hold out the scissors and Squatch glances at the sound. He seems shy... embarrassed even? \n He approaches you and gesticulates at his hair. There's some candy stuck in it and he honestly looks like garbage.\n \n You spend the next several minutes cutting the sticky knots out of his hair. As a thank you, he offers you some candy. You should probably take it.");
+        System.Console.WriteLine("\nYou hold out the SCISSORS and Squatch glances at the sound. He seems shy... embarrassed even? \n He approaches you and gesticulates at his hair. There's some candy stuck in it and he honestly looks like garbage.\n \n You spend the next several minutes cutting the sticky knots out of his hair. As a thank you, he offers you some CANDY. You should probably take it.\n");
         CurrentPlayer.Inventory.Remove(actualItem);
       }
       #endregion
 
       #region l2.biggiecd
-      else if (CurrentRoom.Name == "Lab 2" && actualItem.Name == "Biggie CD")
+      else if (CurrentRoom.Name == "Lab 2" && actualItem.Name == "BIGGIE CD")
       {
-        System.Console.WriteLine("\n You place the Biggie CD into the CD player and 'It was all a dream' starts to play. The Golem wakes, looking super grumpy. It throws a rock at you. You try to dodge, but you can't. \n \n Long story short, you totally died.\n");
+        System.Console.WriteLine("\n You place the BIGGIE CD into the CD PLAYER and 'It was all a dream' starts to play. The Golem wakes, looking super grumpy. It throws a rock at you. You try to dodge, but you can't. \n \n Long story short, you totally died.\n");
         Reset();
       }
       #endregion
 
       #region l2.brookesanddunncd
-      else if (CurrentRoom.Name == "Lab 2" && actualItem.Name == "Brookes and Dunn CD")
+      else if (CurrentRoom.Name == "Lab 2" && actualItem.Name == "BROOKES AND DUNN CD")
       {
-        System.Console.WriteLine("\n You place the Brookes and Dunn CD into the CD player and some groovy country tunes start playing. The Golem wakes, looking really disgruntled. It throws a massive rock at you. You try to roll out of the way, but you can't. \n \n Long story short, you totally died.\n");
+        System.Console.WriteLine("\n You place the BROOKES AND DUNN CD into the CD PLAYER and some groovy country tunes start playing. The Golem wakes, looking really disgruntled. It throws a massive rock at you. You try to roll out of the way, but you can't. \n \n Long story short, you totally died.\n");
         Reset();
       }
       #endregion
 
       #region l2.rushcd
-      else if (CurrentRoom.Name == "Lab 2" && actualItem.Name == "Rush CD")
+      else if (CurrentRoom.Name == "Lab 2" && actualItem.Name == "RUSH CD")
       {
-        System.Console.WriteLine("\nYou place the Rush CD in the CD player and the perfect vocals of Geddy Lee start echoing through the room. \n The Golem wakes up and approaches you, looking super stoked. Golems are rock people. OF COURSE they love rock music.\n\n You decide you have a few minutes to spare to rock out with the Golem.\n Looking happier than ever, the Golem offers you a scrap of Paper with the letter 'E' on it. You should probably take it.");
+        System.Console.WriteLine("\nYou place the RUSH CD in the CD PLAYER and the perfect vocals of Geddy Lee start echoing through the room. \n The Golem wakes up and approaches you, looking super stoked. Golems are rock people. OF COURSE they love rock music.\n\n You decide you have a few minutes to spare to rock out with the Golem.\n Looking happier than ever, the Golem offers you a scrap of PAPER with the letter 'E' on it. You should probably take it.\n");
         CurrentPlayer.Inventory.Remove(actualItem);
       }
 
       #endregion
 
       #region h2.sunglasses
-      else if (actualItem.Name == "Sunglasses")
+      else if (actualItem.Name == "SUNGLASSES")
       {
-        System.Console.WriteLine("\nYou put on your shades. +10 Cool Points.");
+        System.Console.WriteLine("\nYou put on your shades. +10 Cool Points.\n");
         CurrentPlayer.Inventory.Remove(actualItem);
       }
 
@@ -422,9 +431,9 @@ namespace spookylab.Project
 
       #region l5.candy
 
-      else if (CurrentRoom.Name == "Lab 5" && actualItem.Name == "Candy")
+      else if (CurrentRoom.Name == "Lab 5" && actualItem.Name == "CANDY")
       {
-        System.Console.WriteLine("\nThe mutant child shrieks and opens it jaws wide, yellowed teeth glistening in the light as it runs at you. You throw the candy in its mouth with a Steph Curry-worthy shot. Its temporarily stunned, probably long enough for you to take that scrap of Paper on the floor. It has the letter 'A'.");
+        System.Console.WriteLine("\nThe mutant child shrieks and opens it jaws wide, yellowed teeth glistening in the light as it runs at you. You throw the CANDY in its mouth with a Steph Curry-worthy shot. Its temporarily stunned, probably long enough for you to take that scrap of PAPER on the floor. It has the letter 'A' written on it.");
         CurrentPlayer.Inventory.Remove(actualItem);
       }
 
@@ -432,9 +441,9 @@ namespace spookylab.Project
 
       #region l3.fireextinguisher
 
-      else if (CurrentRoom.Name == "Lab 3" && actualItem.Name == "Fire Extinguisher")
+      else if (CurrentRoom.Name == "Lab 3" && actualItem.Name == "FIRE EXTINGUISHER")
       {
-        System.Console.WriteLine("\nThe dragon welcomes you with a nasty breath of fire. You dodged, but you definitely singed your eyebrows. You grab the fire extinguisher out of your pack and aim it at the dragon. Before it can attack again., you spray it, rendering the monster as just an adorable giant lizard. With the situation handled, you notice a piece of Paper with the letter 'S' written on it pinned to the wall behind you. You should probably take it.");
+        System.Console.WriteLine("\nThe dragon welcomes you with a nasty breath of fire. You dodged, but you definitely toasted your buns. You grab the FIRE EXTINGUISHER out of your pack and aim it at the dragon. Before it can attack again, you spray it, rendering the monster as just an adorable giant lizard. With the situation handled, you notice a piece of PAPER with the letter 'S' written on it pinned to the wall behind you. You should probably take it.");
         CurrentPlayer.Inventory.Remove(actualItem);
       }
 
@@ -442,9 +451,9 @@ namespace spookylab.Project
 
       #region l4.coughdrops
 
-      else if (CurrentRoom.Name == "Lab 4" && actualItem.Name == "Cough Drops")
+      else if (CurrentRoom.Name == "Lab 4" && actualItem.Name == "COUGHDROPS")
       {
-        System.Console.WriteLine("\nYour ears are about to bleed, so you offer the Banshee some cough drops. She takes them, clearing her throat a little. Her shrieking song still sounds bad, but at least your ears aren't bleeding. As a token of gratitude, she offers you a piece of Paper with the letter 'L' written on it.");
+        System.Console.WriteLine("\nYour ears are about to bleed, so you offer the Banshee some COUGHDROPS. She takes them, clearing her throat a little. Her shrieking song still sounds bad, but at least your ears aren't bleeding. As a token of gratitude, she offers you a piece of PAPER with the letter 'L' written on it.");
         CurrentPlayer.Inventory.Remove(actualItem);
       }
 
@@ -452,9 +461,9 @@ namespace spookylab.Project
 
       #region l6.oldspaghetti
 
-      else if (CurrentRoom.Name == "Lab 6" && actualItem.Name == "Old Spaghetti")
+      else if (CurrentRoom.Name == "Lab 6" && actualItem.Name == "OLD SPAGHETTI")
       {
-        System.Console.WriteLine("\nThe fearsome Spaghoulie lumbers towards you. You're quivering like a leaf. Nothing is as frightening as this moment. The Spaghoulie absorbs the old spaghetti, increasing drastically in size and power. Thankfully this slows it down. You spot a piece of Paper on the ground with a bit of marinara on it. You can still see it has the letter 'P' written on it. You should probably take it and get out of there as fast as you can.");
+        System.Console.WriteLine("\nThe fearsome Spaghoulie lumbers towards you. You're quivering like a leaf. Nothing is as frightening as this moment. The Spaghoulie absorbs the OLD SPAGHETTI, increasing drastically in size and power. Thankfully this slows it down. You spot a piece of PAPER on the ground with a bit of marinara on it. You can still see it has the letter 'P' written on it. You should probably take it and get out of there as fast as you can.");
         CurrentPlayer.Inventory.Remove(actualItem);
       }
 
@@ -462,9 +471,9 @@ namespace spookylab.Project
 
       #region l6.everythingnotspaghetti
 
-      else if (CurrentRoom.Name == "Lab 6" && actualItem.Name != "Old Spaghetti")
+      else if (CurrentRoom.Name == "Lab 6" && actualItem.Name != "OLD SPAGHETTI")
       {
-        System.Console.WriteLine("\nYou've made a terrible choice. You are absorbed by the Spaghoulie. \n Rest in Pasta");
+        System.Console.WriteLine("\nYou've made a terrible choice. You are absorbed by the Spaghoulie. \n RIP. \nRest in Pasta. Rest in Spaghetti. Never Forgetti.");
         Reset();
       }
 
@@ -472,9 +481,9 @@ namespace spookylab.Project
 
       #region itwasalladream
 
-      else if (actualItem.Name == "Clothespin")
+      else if (actualItem.Name == "CLOTHESPIN")
       {
-        System.Console.WriteLine("\nYou pull out the clothespin you found and pinch yourself with it.\n 'Ouch.'\n Suddenly, the room starts to swirl around you while Biggie's 'It was all a Dream' starts playing.\n You fell alseep on the job. AGAIN.");
+        System.Console.WriteLine("\nYou pull out the CLOTHESPIN you found and pinch yourself with it.\n 'Ouch.'\n Suddenly, the room starts to swirl around you while Biggie's 'It was all a Dream' starts playing.\n You fell alseep on the job. AGAIN.");
         Reset();
       }
 
